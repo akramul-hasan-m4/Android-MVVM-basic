@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.mvvmhelloworldexample.model.User" />
+
+        <variable
+            name="handlers"
+            type="com.example.mvvmhelloworldexample.MainActivity.MyClickHandlers" />
+
+        <import type="com.example.mvvmhelloworldexample.BindingUtils" />
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        tools:context=".MainActivity"
+        android:gravity="center"
+        tools:showIn="@layout/activity_main">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="30sp"
+            android:layout_height="wrap_content"
+            android:text="@{BindingUtils.capitalize(user.name)}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="25sp"
+            android:layout_height="wrap_content"
+            android:text="@{user.email}" />
+
+        <Button
+            android:id="@+id/btn"
+            android:text="Click"
+            android:onClick="@{handlers::onButtonClicked}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> handlers.onButtonClickWithParam(v, user)}"
+            android:text="CLICK WITH PARAM" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:profileImage="@{user.profileImage}" />
+
+    </LinearLayout>
+</layout>
